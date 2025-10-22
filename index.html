@@ -11,14 +11,12 @@
     background: #f4f4f9;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
     min-height: 100vh;
   }
 
   header {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
   }
 
   header h1 {
@@ -26,13 +24,20 @@
     color: #333;
   }
 
+  .circle-container-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .circle-container {
     position: relative;
     width: 400px;
     height: 400px;
-    margin: 3rem auto;
   }
 
+  /* Logo central */
   .center-logo {
     position: absolute;
     top: 50%;
@@ -41,17 +46,15 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(253, 253, 253);
+    background: rgb(253, 253, 253, 0.1);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border: none; /* borde negro */
     z-index: 2;
-border-width: 4px;
-border-style: solid;
-border-color: rgb(0, 0, 0);
-
+    cursor: pointer;
+    overflow: visible;
   }
 
   .center-logo img {
@@ -59,6 +62,30 @@ border-color: rgb(0, 0, 0);
     height: auto;
   }
 
+  /* Tooltip positivo */
+  .center-logo::after {
+    content: "¡ÉXITO EN EL SERVICIO! ✨";
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 5;
+  }
+
+  .center-logo:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+  }
+
+  /* Cards circulares */
   .card {
     position: absolute;
     width: 100px;
@@ -70,13 +97,12 @@ border-color: rgb(0, 0, 0);
     justify-content: center;
     text-align: center;
     cursor: pointer;
-    color: rgb(3, 3, 3);
+    color: white;
     font-weight: bold;
     text-decoration: none;
 
-    /* Contorno brillante y sombra */
-    border: 3px solid rgba(0, 0, 0, 0.9);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.9), 0 0 15px rgba(47, 3, 90, 0.4);
+    border: 3px solid black; /* borde negro */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35); /* sombra más marcada */
 
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
@@ -87,8 +113,13 @@ border-color: rgb(0, 0, 0);
     font-size: 1.8rem;
     margin-bottom: 0.3rem;
   }
+  .card span {
+  font-size: 0.65rem; /* ajustar a tu gusto */
+color: #030303;    /* color blanco, puedes poner cualquier color */
+}
 
-  /* Gradientes por card y retraso de animación */
+
+  /* Gradientes y animación retardada */
   .start-up { background: linear-gradient(135deg, #ffdd57, #ffc107); animation-delay: 0s; }
   .preventive { background: linear-gradient(135deg, #57c7ff, #0099ff); animation-delay: 0.2s; }
   .corrective { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); animation-delay: 0.4s; }
@@ -112,7 +143,7 @@ border-color: rgb(0, 0, 0);
   /* Hover interactivo */
   .card:hover {
     transform: translate(-50%, -50%) scale(1.25);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45), 0 0 20px rgba(0,0,0,0.2);
   }
 
   @media (max-width: 500px) {
@@ -130,35 +161,37 @@ border-color: rgb(0, 0, 0);
     <h1>Centro de Reportes de Servicio</h1>
   </header>
 
-  <div class="circle-container">
-    <div class="center-logo">
-      <img src="Logo.png" alt="¡SUERTE FIXSO!;)">
+  <div class="circle-container-wrapper">
+    <div class="circle-container">
+      <div class="center-logo">
+        <img src="Logo.png" alt="Logo">
+      </div>
+
+      <a href="https://github.com/GF-2026/Start_on_Report" target="_blank" class="card start-up">
+        <i class="fas fa-rocket"></i>
+        <span>ARRANQUE</span>
+      </a>
+
+      <a href="https://github.com/GF-2026/Preventive_Report" target="_blank" class="card preventive">
+        <i class="fas fa-tools"></i>
+        <span>PREVENTIVO</span>
+      </a>
+
+      <a href="https://github.com/GF-2026/Corrective_Report" target="_blank" class="card corrective">
+        <i class="fas fa-wrench"></i>
+        <span>CORRECTIVO</span>
+      </a>
+
+      <a href="https://github.com/GF-2026/Diagnostic_Report" target="_blank" class="card diagnostic">
+        <i class="fas fa-stethoscope"></i>
+        <span>DIAGNÓSTICO</span>
+      </a>
+
+      <a href="https://github.com/GF-2026/SERVICE-REPORT" target="_blank" class="card open-service">
+        <i class="fas fa-file-alt"></i>
+        <span>SERVICIO<br>ABIERTO</span>
+      </a>
     </div>
-
-    <a href="https://github.com/GF-2026/Start_on_Report" target="_blank" class="card start-up">
-      <i class="fas fa-rocket"></i>
-      <span>ARRANQUE</span>
-    </a>
-
-    <a href="https://github.com/GF-2026/Preventive_Report" target="_blank" class="card preventive">
-      <i class="fas fa-tools"></i>
-      <span>PREVENTIVO</span>
-    </a>
-
-    <a href="https://github.com/GF-2026/Corrective_Report" target="_blank" class="card corrective">
-      <i class="fas fa-wrench"></i>
-      <span>CORRECTIVO</span>
-    </a>
-
-    <a href="https://github.com/GF-2026/Diagnostic_Report" target="_blank" class="card diagnostic">
-      <i class="fas fa-stethoscope"></i>
-      <span>DIAGNÓSTICO</span>
-    </a>
-
-    <a href="https://github.com/GF-2026/SERVICE-REPORT" target="_blank" class="card open-service">
-      <i class="fas fa-file-alt"></i>
-      <span>SERVICIO<br>ABIERTO</span>
-    </a>
   </div>
 </body>
 </html>
